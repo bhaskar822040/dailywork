@@ -1,6 +1,7 @@
 package com.udaychandana.dailywork.controller;
 
 import com.udaychandana.dailywork.entity.Department;
+import com.udaychandana.dailywork.error.DepartmentNotFoundException;
 import com.udaychandana.dailywork.service.DepartmentService;
 import com.udaychandana.dailywork.service.DepartmentServiceImpl;
 import org.hibernate.persister.entity.Loadable;
@@ -26,8 +27,9 @@ public class DepartmentController {
     public List<Department> fetchAllDepartment(){
         return departmentService.fetchAllDepartment();
     }
+
     @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId){
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         return departmentService.fetchDepartmentById(departmentId);
     }
     @DeleteMapping("/departments/{id}")
